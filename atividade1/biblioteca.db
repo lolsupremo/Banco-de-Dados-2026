@@ -38,7 +38,11 @@ ALTER TABLE livro ADD isbn varchar(13) unique not null;
 
 ALTER TABLE livro MODIFY COLUMN editora varchar(120);
 
-ALTER TABLE livro change column ano ano_publicação int CHECK (ano_publicação >= 1900);
+ALTER TABLE livro change column ano ano_publicação date;
+
+ALTER TABLE livro ADD email varchar(100) not null;
+
+ALTER TABLE livro MODIFY COLUMN editora varchar(120) not null;
 
 ALTER TABLE aluno drop column telefone;
 
