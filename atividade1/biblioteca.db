@@ -1,0 +1,53 @@
+create database Biblioteca;
+show databases;
+use Biblioteca;
+
+create table autor
+(
+	id_autor int primary key,
+    nome varchar(100) not null,
+    nacinalidade varchar(50)
+    
+);
+
+create table livro
+(
+	id_autor int not null,
+	id_livro int not null,
+    titulo varchar(150) not null,
+    ano int,
+    editora varchar(80),
+    
+    primary key (id_autor, id_livro),
+    foreign key (id_autor) references autor(id_autor) on delete cascade on update cascade
+    
+);
+
+create table aluno
+(
+	id_aluno int primary key,
+    nome varchar(100) not null,
+    email varchar(100) unique ,
+    curso varchar(50)
+    
+);
+
+ALTER TABLE aluno ADD telefone int not null;
+
+ALTER TABLE livro ADD isbn varchar(13) unique not null;
+
+ALTER TABLE livro MODIFY COLUMN editora varchar(120);
+
+ALTER TABLE livro change column ano ano_publicação int CHECK (quantidade >= 1);
+
+ALTER TABLE aluno drop column telefone;
+
+describe aluno;
+describe disciplina;
+describe matriculado;
+
+DROP TABLE aluno;
+
+DROP TABLE livro;
+
+DROP database if exists Biblioteca;
